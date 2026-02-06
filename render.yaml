@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: ai-portfolio-chatbot
+    env: php
+    region: frankfurt  # ou oregon, singapore
+    plan: free
+    buildCommand: |
+      composer install --no-dev --optimize-autoloader
+      php bin/console cache:clear --env=prod
+      php bin/console cache:warmup --env=prod
+    startCommand: php -S 0.0.0.0:$PORT -t public
+    envVars:
+      - key: APP_ENV
+        value: prod
+      - key: APP_SECRET
+        generateValue: true
+      - key: GEMINI_API_KEY
+        sync: false  # Vous le mettrez manuellement dans le dashboard
+      - key: GEMINI_API_URL
+        value: https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent
