@@ -1,0 +1,339 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AI Portfolio Chatbot - Abdessamad Benali{% endblock %}
+
+{% block body %}
+    <div class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b border-gray-200">
+            <div class="container mx-auto px-4 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-full flex items-center justify-center">
+                            <span class="text-white text-2xl">🤖</span>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-bold text-gray-800">AI Portfolio Assistant</h1>
+                            <p class="text-sm text-gray-600">Abdessamad Benali - Freelance Backend Developer</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span class="text-sm text-gray-600">En ligne</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Chat Container -->
+        <div class="container mx-auto px-4 py-8">
+            <div class="max-w-4xl mx-auto">
+
+                <!-- Chat Box -->
+                <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+
+                    <!-- Messages Area -->
+                    <div id="messages-container" class="h-[500px] overflow-y-auto p-6 space-y-4 bg-gray-50">
+
+                        <!-- Message de bienvenue -->
+                        <div class="flex items-start space-x-3 message-animation">
+                            <div class="flex-shrink-0">
+                                <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
+                                    <span class="text-white font-bold text-sm">AI</span>
+                                </div>
+                            </div>
+                            <div class="flex-1 max-w-xl">
+                                <div class="bg-white rounded-2xl rounded-tl-none p-4 shadow-md">
+                                    <p class="text-gray-800 leading-relaxed">
+                                        👋 <strong>Bonjour !</strong> Je suis l'assistant IA d'Abdessamad Benali.
+                                    </p>
+                                    <p class="text-gray-800 leading-relaxed mt-2">
+                                        Je peux répondre à vos questions sur :
+                                    </p>
+                                    <ul class="mt-2 space-y-1 text-gray-700 text-sm">
+                                        <li>✨ Compétences et expérience</li>
+                                        <li>💼 TJM et disponibilités</li>
+                                        <li>🚀 Projets et réalisations</li>
+                                        <li>🎯 Spécialisations (Assurtech, E-commerce, IA)</li>
+                                    </ul>
+                                    <p class="text-gray-600 text-xs mt-3 italic">
+                                        Posez-moi n'importe quelle question !
+                                    </p>
+                                </div>
+                                <div class="text-xs text-gray-500 mt-1 ml-1">Maintenant</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Input Area -->
+                    <div class="border-t border-gray-200 bg-white p-4">
+                        <form id="chat-form" class="flex space-x-3">
+                            <input
+                                    type="text"
+                                    id="user-input"
+                                    placeholder="Posez votre question... (ex: Quel est ton TJM ?)"
+                                    class="flex-1 rounded-xl border-2 border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
+                                    autocomplete="off"
+                            >
+                            <button
+                                    type="submit"
+                                    id="send-button"
+                                    class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-3 rounded-xl font-semibold transition duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+                            >
+                                <span id="send-text">Envoyer</span>
+                                <span id="send-loading" class="hidden">
+                                <svg class="animate-spin h-5 w-5 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </span>
+                            </button>
+                        </form>
+
+                        <!-- Suggestions rapides -->
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <button class="suggestion-btn text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 rounded-full transition duration-200">
+                                💰 Quel est ton TJM ?
+                            </button>
+                            <button class="suggestion-btn text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 rounded-full transition duration-200">
+                                🛠️ Quelles sont tes compétences ?
+                            </button>
+                            <button class="suggestion-btn text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 rounded-full transition duration-200">
+                                📅 Es-tu disponible ?
+                            </button>
+                            <button class="suggestion-btn text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 rounded-full transition duration-200">
+                                🚀 Parle-moi de tes projets IA
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Info Footer -->
+                <div class="text-center mt-6">
+                    <p class="text-sm text-gray-600">
+                        🚀 Propulsé par <strong>Google Gemini API</strong> •
+                        Développé avec <strong>Symfony 7</strong>
+                    </p>
+                    <p class="text-xs text-gray-500 mt-2">
+                        Version 1.0 • Février 2026
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        const CONTEXT = {{ context |json_encode|raw }};
+        // Elements DOM
+        const form = document.getElementById('chat-form');
+        const input = document.getElementById('user-input');
+        const messagesContainer = document.getElementById('messages-container');
+        const sendButton = document.getElementById('send-button');
+        const sendText = document.getElementById('send-text');
+        const sendLoading = document.getElementById('send-loading');
+
+        // Fonction pour formater l'heure
+        function getTimeString() {
+            const now = new Date();
+            return now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        // Fonction pour ajouter un message utilisateur
+        function addUserMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'flex items-start space-x-3 flex-row-reverse space-x-reverse message-animation';
+
+            messageDiv.innerHTML = `
+            <div class="flex-shrink-0">
+                <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg">
+                    <span class="text-white font-bold text-sm">ME</span>
+                </div>
+            </div>
+            <div class="flex-1 max-w-xl">
+                <div class="bg-gradient-to-br from-green-500 to-emerald-600 text-white rounded-2xl rounded-tr-none p-4 shadow-md">
+                    <p class="leading-relaxed">${escapeHtml(text)}</p>
+                </div>
+                <div class="text-xs text-gray-500 mt-1 mr-1 text-right">${getTimeString()}</div>
+            </div>
+        `;
+
+            messagesContainer.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        // Fonction pour ajouter un message AI
+        function addAIMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'flex items-start space-x-3 message-animation';
+
+            messageDiv.innerHTML = `
+            <div class="flex-shrink-0">
+                <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
+                    <span class="text-white font-bold text-sm">AI</span>
+                </div>
+            </div>
+            <div class="flex-1 max-w-xl">
+                <div class="bg-white rounded-2xl rounded-tl-none p-4 shadow-md">
+                    <p class="text-gray-800 leading-relaxed whitespace-pre-line">${escapeHtml(text)}</p>
+                </div>
+                <div class="text-xs text-gray-500 mt-1 ml-1">${getTimeString()}</div>
+            </div>
+        `;
+
+            messagesContainer.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        // Fonction pour afficher le loader (typing indicator)
+        function addLoader() {
+            const loaderDiv = document.createElement('div');
+            loaderDiv.id = 'typing-loader';
+            loaderDiv.className = 'flex items-start space-x-3 message-animation';
+
+            loaderDiv.innerHTML = `
+            <div class="flex-shrink-0">
+                <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
+                    <span class="text-white font-bold text-sm">AI</span>
+                </div>
+            </div>
+            <div class="flex-1 max-w-xl">
+                <div class="bg-white rounded-2xl rounded-tl-none p-4 shadow-md">
+                    <div class="flex space-x-2">
+                        <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                        <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                        <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+            messagesContainer.appendChild(loaderDiv);
+            scrollToBottom();
+        }
+
+        // Fonction pour retirer le loader
+        function removeLoader() {
+            const loader = document.getElementById('typing-loader');
+            if (loader) {
+                loader.remove();
+            }
+        }
+
+        // Fonction pour scroller en bas
+        function scrollToBottom() {
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // Fonction pour échapper HTML (sécurité)
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Fonction pour désactiver/activer le formulaire
+        function setFormDisabled(disabled) {
+            input.disabled = disabled;
+            sendButton.disabled = disabled;
+            if (disabled) {
+                sendText.classList.add('hidden');
+                sendLoading.classList.remove('hidden');
+                sendButton.classList.add('opacity-75', 'cursor-not-allowed');
+            } else {
+                sendText.classList.remove('hidden');
+                sendLoading.classList.add('hidden');
+                sendButton.classList.remove('opacity-75', 'cursor-not-allowed');
+            }
+        }
+
+        // Fonction principale pour envoyer un message
+        async function sendMessage(message) {
+            if (!message.trim()) return;
+
+            // Afficher le message de l'utilisateur
+            addUserMessage(message);
+
+            // Vider l'input
+            input.value = '';
+
+            // Désactiver le formulaire
+            setFormDisabled(true);
+
+            // Afficher le loader
+            addLoader();
+
+            try {
+                // Appel API avec contexte
+                const response = await fetch('/api/chat/context', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        context: CONTEXT
+                    })
+                });
+
+                const data = await response.json();
+
+                // Retirer le loader
+                removeLoader();
+
+                if (data.error) {
+                    addAIMessage('❌ Désolé, une erreur est survenue : ' + data.error);
+                } else {
+                    addAIMessage(data.ai_response);
+                }
+
+            } catch (error) {
+                removeLoader();
+                addAIMessage('❌ Erreur de connexion. Veuillez réessayer dans quelques instants.');
+                console.error('Error:', error);
+            } finally {
+                // Réactiver le formulaire
+                setFormDisabled(false);
+                input.focus();
+            }
+        }
+
+        // Event: Soumission du formulaire
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const message = input.value.trim();
+            sendMessage(message);
+        });
+
+        // Event: Clic sur suggestions rapides
+        document.querySelectorAll('.suggestion-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const suggestion = btn.textContent.trim();
+                input.value = suggestion;
+                sendMessage(suggestion);
+            });
+        });
+
+        // Event: Enter pour envoyer (sans Shift)
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                form.dispatchEvent(new Event('submit'));
+            }
+        });
+
+        // Focus automatique sur l'input au chargement
+        window.addEventListener('load', () => {
+            input.focus();
+        });
+
+        // Scroll en bas au chargement
+        scrollToBottom();
+    </script>
+{% endblock %}
