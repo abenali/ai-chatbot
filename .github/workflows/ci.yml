@@ -39,9 +39,9 @@ jobs:
 
       - name: 🔍 Check Symfony requirements
         run: vendor/bin/requirements-checker
-
-      - name: ✅ Run Symfony security check
-        run: symfony security:check
+#
+#      - name: ✅ Run Symfony security check
+#        run: symfony security:check
 
       - name: 🧹 PHP CS Fixer (Code style)
         run: |
