@@ -96,6 +96,12 @@ Le serveur sera alors accessible sur `http://127.0.0.1:8000` (ou l'URL indiquée
 
 Vous pouvez aussi appeler l'API principale `/api/chat` en POST depuis un client HTTP (fetch, Postman) ; consultez le code dans `src/Controller/Api/ChatController.php` pour les détails d'implémentation.
 
+## 🚀 Demo Live
+
+🌐 **[Voir la démo](https://ai-chatbot-untd.onrender.com)**
+
+**NB** : *La démo est hébergée sur Render.com, avec un plan gratuit. Le serveur redémarre s'il n'y a pas d'activité durant 15min. Avec cette limitation, la première requête après une période d'inactivité peut prendre plus de temps à répondre (démarrage du serveur). Merci de votre compréhension !*
+
 ## Sécurité
 
 - Ne commitez jamais vos clés (`GEMINI_API_KEY`) ni vos secrets (`APP_SECRET`) dans le dépôt.
